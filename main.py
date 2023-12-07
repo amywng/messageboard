@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime, timezone
 from dateutil import tz
+import os
 
 class MessageBoardHandler(BaseHTTPRequestHandler):
 
@@ -13,10 +14,15 @@ class MessageBoardHandler(BaseHTTPRequestHandler):
 
       with open('messageboard.html', 'rb') as html:
         self.wfile.write(html.read())
-
+      
       self.wfile.write(bytes('<ul>', 'utf-8'))
       
-      messages = open("entries.txt", "r")
+      if os.path.exists("entries.txt"):
+        messages = open("entries.txt", "r")
+      else:
+        entries = open("entries.txt", "w+")
+        entries.close()
+        messages = open("entries.txt", "r")
 
       for message in reversed(list(messages)):
         self.wfile.write(bytes('<li>{}</li>'.format(message), 'utf-8'))
