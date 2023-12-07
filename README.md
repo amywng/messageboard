@@ -1,5 +1,4 @@
-# messageboard
-Global anonymous message board
+# Global Anonymous Message Board
 
 High level overview:
 This Python-based web application serves as a simple solution for a global anonymous message board allowing users to post messages that are displayed from most to least recent. The applications consists of a Python file implementing the server side logic, an HTML file mapping out the style and structure of the webpage, and a text file, 'entries.txt' to store posted messages with their corresponding timestamps. 
